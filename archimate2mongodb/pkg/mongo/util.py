@@ -16,8 +16,9 @@ class MongoUtil:
             else:   
                 self.client = MongoClient()
             self.initialize_database()            
-        except Exception:
-            print(Exception) 
+        except: # catch *all* exceptions
+            e = sys.exc_info()[0]
+            print("Error: %s" % e )
         
     def get_client(self):
         return self.client
