@@ -27,4 +27,4 @@ if __name__ == '__main__':
                 element_instance.add_relation(r)
         element_instance.set_properties(get_element_props(element, property_defs))
         elements.append(element_instance)
-        mongoclient.insert_element(element)
+        mongoclient.insert_element(element_instance)
