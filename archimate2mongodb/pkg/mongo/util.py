@@ -6,30 +6,29 @@ from pymongo import MongoClient
 class MongoUtil:
     
     """TODO"""    
-    def __new__(self, host=None, port=None, options={}):
+    def __init__(self, host=None, port=None, options={}):
         self.client = None
-        self.archi_collection = None
+        self.elements_col = None
         self.db = None
-        try:
-            if host and port:
-                self.client = MongoClient(host,port) 
-            else:   
-                self.client = MongoClient()
-            self.initialize_database()            
-        except: # catch *all* exceptions
-            e = sys.exc_info()[0]
-            print("Error: %s" % e )
+        
+        if host and port:
+            self.client = MongoClient(host,port) 
+        else:   
+            self.client = MongoClient()
+        self.initialize_database()            
+        # except: # catch *all* exceptions
+        #     e = sys.exc_info()[0]
+        #     print("Error: %s" % e )
         
     def get_client(self):
         return self.client
     
     def initialize_database(self):
-        print("pase")
         self.db = self.client.archimate
         self.elements_col = self.db.elements
         #self.elements_rel = self.db.relationships
                                          
-    def insert_element(element=None):
+    def insert_element(self,element=None):
         if element:
             try:
                 element_id = self.elements_col.insert_one(element).inserted_id
@@ -37,7 +36,7 @@ class MongoUtil:
                 element_id = None
         return element_id
     
-    def insert_elements(elements=[]):
+    def insert_elements(self,elements=[]):
         if len(elements) > 0:        
             try:
                 result = self.elements_col.insert_many(elements)
@@ -45,7 +44,7 @@ class MongoUtil:
                 result = None
         return result
     
-    def show_element(id=None):
+    def show_element(self,id=None):
         if id:
             self.elements_col.find_one({"_id" : id})
         else:
