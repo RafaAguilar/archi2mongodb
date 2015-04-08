@@ -27,10 +27,4 @@ if __name__ == '__main__':
                 element_instance.add_relation(r)
         element_instance.set_properties(get_element_props(element, property_defs))
         elements.append(element_instance)
-        
-    #elements[0].pretty_print()
-    elements[30].pretty_print()
-    #elements[31].pretty_print()
-    
-    mongoclient.insert_element(elements[30].to_json)
-    mongoclient.show_element()
+        mongoclient.insert_element(element)

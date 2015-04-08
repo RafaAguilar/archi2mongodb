@@ -31,22 +31,24 @@ class MongoUtil:
     def insert_element(self,element=None):
         if element:
             try:
-                element_id = self.elements_col.insert_one(element).inserted_id
+                element_id = self.elements_col.insert_one(element.to_dict()).inserted_id
             except Exception:
                 element_id = None
         return element_id
-    
-    def insert_elements(self,elements=[]):
-        if len(elements) > 0:        
-            try:
-                result = self.elements_col.insert_many(elements)
-            except Exception:
-                result = None
-        return result
+   
+    # This wont work 'cause elements is an array of Element,
+    # not an array of dict or bson.son.SON objects require for "insert_many" method
+    # def insert_elements(self,elements=[]):
+    #     if len(elements) > 0:        
+    #         try:
+    #             result = self.elements_col.insert_many(elements)
+    #         except Exception:
+    #             result = None
+    #     return result
     
     def show_element(self,id=None):
         if id:
-            self.elements_col.find_one({"_id" : id})
+            print(self.elements_col.find_one({"_id" : id}))
         else:
-            self.elements_col.find_one()
+            print(self.elements_col.find_one())
         
