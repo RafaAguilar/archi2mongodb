@@ -5,7 +5,7 @@ from pkg.relations.relation import *
 from pkg.elements.element import *
 from pkg.basics.model import *
 from pkg.basics.relations import *
-from pkg.mongo.client import *
+from pkg.mongo.util import *
 
 if __name__ == '__main__':
     
