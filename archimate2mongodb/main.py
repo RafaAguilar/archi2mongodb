@@ -8,7 +8,7 @@ from pkg.basics.relations import *
 
 if __name__ == '__main__':
     
-    archi_model = load_model_to_dict(r'C:\Users\raguilar\Documents\Documentacion\Soluciones\Coord Arq. Empresarial\Herramienta Arquitectura\file_format_archimate.xml')
+    archi_model = load_model_to_dict('../examples/file_format_archimate.xml')
     
     property_defs=get_property_defs(archi_model)
     
