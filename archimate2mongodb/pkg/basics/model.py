@@ -13,6 +13,7 @@ class Model(Enum):
     PropertyDefs = 'propertydefs'
     PropertyDef =  'propertydef'
     Views = 'views'
+    View = 'view'
     Element = 'element'
     Relation = 'relationship'
     Properties = 'properties'

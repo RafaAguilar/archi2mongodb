@@ -3,6 +3,7 @@
 from pkg.utils.utils import *
 from pkg.relations.relation import *
 from pkg.elements.element import *
+from pkg.views.view import *
 from pkg.basics.model import *
 from pkg.basics.relations import *
 from pkg.mongo.util import *
@@ -28,3 +29,7 @@ if __name__ == '__main__':
         element_instance.set_properties(get_element_props(element, property_defs))
         elements.append(element_instance)
         mongoclient.insert_element(element_instance)
+        
+    views=[]
+    for view in get_model_child(archi_model, Model.Views, Model.View):
+        views.append(View(view))

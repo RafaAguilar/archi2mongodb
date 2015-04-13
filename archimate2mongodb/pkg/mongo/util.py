@@ -32,8 +32,10 @@ class MongoUtil:
         if element:
             try:
                 element_id = self.elements_col.insert_one(element.to_dict()).inserted_id
-            except Exception:
+            except:
                 element_id = None
+                print("Error al insertar el elemento:")
+                element.pretty_print()
         return element_id
    
     # This wont work 'cause elements is an array of Element,

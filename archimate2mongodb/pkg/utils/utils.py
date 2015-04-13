@@ -69,7 +69,7 @@ def break_complex_type_layer(complex_type):
     return re.findall('[A-Z][^A-Z]*', complex_type)
 
 
-def get_relation_prop(relation, prop_key):
+def get_element_prop(element, prop_key):
 
     """TODO"""
     return relation[prop_key.value]

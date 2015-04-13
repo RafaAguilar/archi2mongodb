@@ -12,7 +12,7 @@ class Relation:
     def __init__(self, xml_relationship):
         self.relation = {}
         for r in Relations:
-            self.relation[r.name] = get_relation_prop(xml_relationship, r)
+            self.relation[r.name] = get_element_prop(xml_relationship, r)
 
     def to_dict(self):
         return self.relation
