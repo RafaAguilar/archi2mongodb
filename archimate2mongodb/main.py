@@ -10,7 +10,7 @@ from pkg.mongo.util import *
 
 if __name__ == '__main__':
     
-mongoclient = MongoUtil()  
+    mongoclient = MongoUtil()
 
     archi_model = load_model_to_dict('../examples/file_format_archimate.xml')
     
