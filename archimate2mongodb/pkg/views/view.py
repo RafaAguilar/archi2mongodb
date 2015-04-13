@@ -11,8 +11,8 @@ class View:
     """TODO"""
     def __init__(self, xml_view):
         self.view = {}
-        for v in Views:
-            self.view[v.name] = get_relation_prop(xml_view, r)
+        for v in Views:            
+            self.view[v.name] = get_view_prop(xml_view, v)
 
     def to_dict(self):
         return self.view
@@ -25,3 +25,9 @@ class View:
 
     def id(self):
         return self.view[Views.Identifier.name]
+    
+    def info(self):
+        return {prop: self.view.get(prop, None) for prop in (Views.Identifier.name, Views.Documentation.name, Views.Label.name, Views.Viewpoint.name)}
+    
+    def details(self):
+        return {prop: self.view.get(prop, None) for prop in (Views.Identifier.name, Views.Connection.name, Views.Node.name)}
