@@ -7,12 +7,14 @@ from pkg.views.view import *
 from pkg.basics.model import *
 from pkg.basics.relations import *
 from pkg.mongo.util import *
+import anyconfig
 
 if __name__ == '__main__':
     
-    mongoclient = MongoUtil()
-
-    archi_model = load_model_to_dict('../examples/file_format_archimate.xml')
+    conf = anyconfig.load("../conf.yml")
+    
+    mongoclient = MongoUtil(conf['mongo'])
+    archi_model = load_model_to_dict(conf['model']['path'])
     
     property_defs=get_property_defs(archi_model)
     

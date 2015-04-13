@@ -6,7 +6,7 @@ from pymongo import MongoClient
 class MongoUtil:
     
     """TODO"""    
-    def __init__(self, host=None, port=None, options={}):
+    def __init__(self, conf):
         self.client = None
         self.elements_col = None
         self.views_info_col = None
@@ -14,7 +14,7 @@ class MongoUtil:
         self.db = None
         
         if host and port:
-            self.client = MongoClient(host,port) 
+            self.client = MongoClient(conf['host'], conf['port'], conf['db'], conf['tz_aware'], conf['connect']) 
         else:   
             self.client = MongoClient()
         self.initialize_database()            
