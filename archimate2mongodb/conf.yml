@@ -1,0 +1,10 @@
+#For further mongo parameters details see http://api.mongodb.org/python/current/api/pymongo/mongo_client.html#pymongo.mongo_client.MongoClient
+mongo:
+        host : 'localhost'
+        port : 27017
+        db   : 'archimate'
+        tz_aware : true
+        connect : false
+        
+model:
+        path : '../examples/file_format_archimate.xml'

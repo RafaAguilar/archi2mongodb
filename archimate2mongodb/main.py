@@ -3,15 +3,18 @@
 from pkg.utils.utils import *
 from pkg.relations.relation import *
 from pkg.elements.element import *
+from pkg.views.view import *
 from pkg.basics.model import *
 from pkg.basics.relations import *
 from pkg.mongo.util import *
+import anyconfig
 
 if __name__ == '__main__':
     
-    mongoclient = MongoUtil()  
+    conf = anyconfig.load("../conf.yml")
     
-    archi_model = load_model_to_dict('../examples/file_format_archimate.xml')
+    mongoclient = MongoUtil(conf['mongo'])
+    archi_model = load_model_to_dict(conf['model']['path'])
     
     property_defs=get_property_defs(archi_model)
     

@@ -6,13 +6,15 @@ from pymongo import MongoClient
 class MongoUtil:
     
     """TODO"""    
-    def __init__(self, host=None, port=None, options={}):
+    def __init__(self, conf):
         self.client = None
         self.elements_col = None
+        self.views_info_col = None
+        self.views_details_col = None
         self.db = None
         
         if host and port:
-            self.client = MongoClient(host,port) 
+            self.client = MongoClient(conf['host'], conf['port'], conf['db'], conf['tz_aware'], conf['connect']) 
         else:   
             self.client = MongoClient()
         self.initialize_database()            
@@ -26,15 +28,20 @@ class MongoUtil:
     def initialize_database(self):
         self.db = self.client.archimate
         self.elements_col = self.db.elements
+        self.views_col = self.db.views_info
+        self.views_details_col = self.db.views_details
         #self.elements_rel = self.db.relationships
                                          
     def insert_element(self,element=None):
         if element:
             try:
                 element_id = self.elements_col.insert_one(element.to_dict()).inserted_id
-            except Exception:
+            except:
                 element_id = None
-        return element_id
+                print("Error al insertar el elemento:")
+                element.pretty_print()
+            return element_id
+        return None
    
     # This wont work 'cause elements is an array of Element,
     # not an array of dict or bson.son.SON objects require for "insert_many" method
