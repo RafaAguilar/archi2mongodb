@@ -9,6 +9,8 @@ class MongoUtil:
     def __init__(self, host=None, port=None, options={}):
         self.client = None
         self.elements_col = None
+        self.views_info_col = None
+        self.views_details_col = None
         self.db = None
         
         if host and port:
@@ -26,6 +28,8 @@ class MongoUtil:
     def initialize_database(self):
         self.db = self.client.archimate
         self.elements_col = self.db.elements
+        self.views_col = self.db.views_info
+        self.views_details_col = self.db.views_details
         #self.elements_rel = self.db.relationships
                                          
     def insert_element(self,element=None):
@@ -36,7 +40,8 @@ class MongoUtil:
                 element_id = None
                 print("Error al insertar el elemento:")
                 element.pretty_print()
-        return element_id
+            return element_id
+        return None
    
     # This wont work 'cause elements is an array of Element,
     # not an array of dict or bson.son.SON objects require for "insert_many" method
@@ -53,4 +58,16 @@ class MongoUtil:
             print(self.elements_col.find_one({"_id" : id}))
         else:
             print(self.elements_col.find_one())
-        
+            
+    def insert_view(self,view=None):
+        if view:
+            try:
+                view_info_id = self.views_info_col.insert_one(view.info()).inserted_id
+                view_detail_id = self.views_details_col.insert_one(view.details()).inserted_id
+            except:
+                view_info_id = None
+                view_detail_id = None
+                print("Error al insertar la vista:")
+                view.pretty_print()
+        return [view_info_id,view_detail_id]
+            

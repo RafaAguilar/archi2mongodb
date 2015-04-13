@@ -59,9 +59,17 @@ def get_layer_and_type(xml_types):
 def get_element_prop(element, prop_key):
 
     """TODO"""
+    
     return element[Elements.Label.value][Elements.Text.value] if prop_key == Elements.Text else element[prop_key.value]
+    
 
-
+def get_view_prop(view, prop_key):
+    
+    """TODO"""
+    if prop_key.value in view.keys():
+        return view[prop_key.value]
+    return ''
+    
 def break_complex_type_layer(complex_type):
 
     """TODO"""
@@ -69,7 +77,7 @@ def break_complex_type_layer(complex_type):
     return re.findall('[A-Z][^A-Z]*', complex_type)
 
 
-def get_element_prop(element, prop_key):
+def get_relation_prop(relation, prop_key):
 
     """TODO"""
     return relation[prop_key.value]

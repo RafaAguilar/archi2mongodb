@@ -8,7 +8,9 @@ class Views(Enum):
   """TODO"""  
   Identifier = '@identifier'
   #Information = 'Information' #TOGAF Supports Information Layer, Archimate don't
-  Motivation = '@viewpoint'
-  Infrastructure = 'Infrastructure' #No han sido probadas
-  Application = 'Application' #No han sido probadas
+  Viewpoint = '@viewpoint'
+  Documentation = 'documentation' #No han sido probadas
+  Node = 'node' #No han sido probadas
+  Connection = 'connection'
+  Label = 'label'
 
