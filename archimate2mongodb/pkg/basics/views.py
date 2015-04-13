@@ -13,4 +13,4 @@ class Views(Enum):
   Node = 'node' #No han sido probadas
   Connection = 'connection'
   Label = 'label'
-
+  Text = '#text'

@@ -6,6 +6,7 @@ from ..basics.layers import *
 from ..basics.elements import *
 from ..basics.property import *
 from ..basics.model import *
+from ..basics.views import *
 from collections import OrderedDict
 
 
@@ -67,7 +68,7 @@ def get_view_prop(view, prop_key):
     
     """TODO"""
     if prop_key.value in view.keys():
-        return view[prop_key.value]
+        return view[Views.Label.value][Views.Text.value] if prop_key in (Views.Text, Views.Label) else view[prop_key.value]
     return ''
     
 def break_complex_type_layer(complex_type):

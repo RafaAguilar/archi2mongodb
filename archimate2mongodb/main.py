@@ -36,4 +36,5 @@ if __name__ == '__main__':
     for view in get_model_child(archi_model, Model.Views, Model.View):
         views.append(View(view))
                 
-    print(views[0].details())
+    #print(views[0].details())
+    mongoclient.insert_view(views[0])
