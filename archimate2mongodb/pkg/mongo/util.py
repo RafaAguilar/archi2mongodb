@@ -13,8 +13,8 @@ class MongoUtil:
         self.views_details_col = None
         self.db = None
         
-        if host and port:
-            self.client = MongoClient(conf['host'], conf['port'], conf['db'], conf['tz_aware'], conf['connect']) 
+        if conf:
+            self.client = MongoClient(conf['host'], conf['port'], tz_aware=conf['tz_aware'],connect=conf['connect']) 
         else:   
             self.client = MongoClient()
         self.initialize_database()            
@@ -28,7 +28,7 @@ class MongoUtil:
     def initialize_database(self):
         self.db = self.client.archimate
         self.elements_col = self.db.elements
-        self.views_col = self.db.views_info
+        self.views_info_col = self.db.views_info
         self.views_details_col = self.db.views_details
         #self.elements_rel = self.db.relationships
                                          
@@ -58,4 +58,16 @@ class MongoUtil:
             print(self.elements_col.find_one({"_id" : id}))
         else:
             print(self.elements_col.find_one())
-        
+            
+    def insert_view(self,view=None):
+        if view:
+            try:
+                view_info_id = self.views_info_col.insert_one(view.info()).inserted_id
+                view_detail_id = self.views_details_col.insert_one(view.details()).inserted_id
+            except:
+                view_info_id = None
+                view_detail_id = None
+                print("Error al insertar la vista:")
+                print(view.to_json())
+        return [view_info_id,view_detail_id]
+            
