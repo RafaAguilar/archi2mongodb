@@ -31,3 +31,10 @@ class View:
     
     def details(self):
         return {prop: self.view.get(prop, None) for prop in (Views.Identifier.name, Views.Connection.name, Views.Node.name)}
+    
+    def elements_ref(self):
+        nodes = self.view.get(Views.Node.name, None)
+        return [node.get('@elementref',None) for node in nodes]
+        
+        
+        
