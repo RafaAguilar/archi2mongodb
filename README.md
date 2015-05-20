@@ -1,6 +1,8 @@
 # archi2mongodb
 A Python app that parse Archimate Exchange File to a MongoDB
 
+___This is a proof of concept, you may encounter with ugly commits, or a wrong MVC distribution, this a very import issue to fix on future releases____
+
 Modules needed:
 
  - xmltodict
